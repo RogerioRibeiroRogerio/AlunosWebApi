@@ -1,4 +1,5 @@
 using AlunosApi.Context;
+using AlunosApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +32,7 @@ namespace AlunosApi
             //definição da string de conecção para a Api conectar o banco de dados
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+            services.AddScoped<InterfaceAlunoService, AlunosService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
